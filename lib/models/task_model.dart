@@ -14,16 +14,16 @@ class TaskModel {
   final String energyLevel;
 
   TaskModel({
-         required this.id,
-         required this.title,
-         required this.category,
-         required this.date,
-         required this.startTime,
-         required this.endTime,
-         required this.urgency,
-         required this.importance,
-         required this.estimatedEffortHours,
-         required this.energyLevel
+    required this.id,
+    required this.title,
+    required this.category,
+    required this.date,
+    required this.startTime,
+    required this.endTime,
+    required this.urgency,
+    required this.importance,
+    required this.estimatedEffortHours,
+    required this.energyLevel
   });
 
   Map<String, dynamic> toJson() {
@@ -33,8 +33,9 @@ class TaskModel {
       'title': title,
       'category': category,
       'date': date.toIso8601String().split('T').first,
-      'startTime': '\${startTime.hour}: \${startTime.minute}',
-      'endTime': '\${endTime.hour}: \${endTime.minute}',
+      // BUG FIX: Added string padding to handle single-digit minutes
+      'startTime': '${startTime.hour}:${startTime.minute.toString().padLeft(2, '0')}',
+      'endTime': '${endTime.hour}:${endTime.minute.toString().padLeft(2, '0')}',
       'urgency': urgency,
       'importance': importance,
       'estimatedEffortHours': estimatedEffortHours,

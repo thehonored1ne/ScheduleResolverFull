@@ -7,9 +7,10 @@ class ScheduleProvider extends ChangeNotifier {
   final List<TaskModel>  _tasks = [];
   final Uuid _uuid = const Uuid();
 
-  List<TaskModel>get tasks => _tasks;
+  List<TaskModel> get tasks => _tasks;
 
-  void addTasks({
+  // BUG FIX: Renamed addTasks to addTask to match UI screen calls
+  void addTask({
     required String title,
     required String category,
     required DateTime date,
@@ -20,23 +21,25 @@ class ScheduleProvider extends ChangeNotifier {
     required double estimatedEffortHours,
     required String energyLevel
   }) {
-    final newTasks = TaskModel(
-      id: _uuid.v4(),
-      title: title,
-      category: category,
-      date: date,
-      startTime: startTime,
-      endTime: endTime,
-      urgency: urgency,
-      importance: importance,
-      estimatedEffortHours: estimatedEffortHours,
-      energyLevel: energyLevel
+    // BUG FIX: Renamed newTasks to newTask for consistency
+    final newTask = TaskModel(
+        id: _uuid.v4(),
+        title: title,
+        category: category,
+        date: date,
+        startTime: startTime,
+        endTime: endTime,
+        urgency: urgency,
+        importance: importance,
+        estimatedEffortHours: estimatedEffortHours,
+        energyLevel: energyLevel
     );
-    _tasks.add(newTasks);
+    _tasks.add(newTask);
     notifyListeners();
   }
 
-  void removeTasks(String id) {
+  // BUG FIX: Renamed removeTasks to removeTask to match UI screen calls
+  void removeTask(String id) {
     _tasks.removeWhere((task) => task.id == id);
     notifyListeners();
   }
