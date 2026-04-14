@@ -37,7 +37,7 @@ class ScheduleProvider extends ChangeNotifier {
   }
 
   void removeTasks(String id) {
-    _tasks.removeWhere((task) => task.id ==id);
+    _tasks.removeWhere((task) => task.id == id);
     notifyListeners();
   }
 }
